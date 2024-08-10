@@ -1,0 +1,59 @@
+#!/bin/bash
+
+echo "Stopping the UFW service"
+
+sleep 1
+
+systemctl stop ufw
+
+echo "Disabling the UFW service"
+
+sleep 1
+
+systemctl disable ufw
+
+echo "Disabling the Apparmor service"
+
+systemctl stop apparmor.service
+
+apt update && sudo apt upgrade -y
+
+echo "## Installing the docker ##
+
+sleep 2
+
+apt install -y docker.io
+
+sleep 2
+echo "Checking the docker version"
+x= $(docker --version)
+echo "The current installed version of the docker is $x"
+
+systemctl enable docker
+echo "Ading the Kubernetes repo ##"
+
+sleep 1
+
+echo "deb [signed-by=/etc/apt/keyrings/kubernetes-apt-keyring.gpg] https://pkgs.k8s.io/core:/stable:/v1.30/deb/ /" | sudo tee /etc/apt/sources.list.d/kubernetes.list
+
+echo "### Downloading the GPG key ###"
+
+curl -fsSL https://pkgs.k8s.io/core:/stable:/v1.30/deb/Release.key | sudo gpg --dearmor -o /etc/apt/keyrings/kubernetes-apt-keyring.gpg
+
+echo "Updating the repo ###
+
+apt update
+
+echo "Installing the Kubernetes Services"
+
+apt install -y kubelet kubeadm kubectl
+
+systemctl start kubelet
+
+systemctl enable kubelet
+
+apt-mark hold kubelet kubeadm kubectl
+
+swapoff -a
+
+sed -i '/ swap / s/^\(.*\)$/#\1/g' /etc/fstab
