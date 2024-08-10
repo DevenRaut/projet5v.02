@@ -1,0 +1,56 @@
+ 1  mkdir project-test01
+    2  cd project-test01/
+    3  vim provider.tf
+    4  vim vpc.tf
+    5  vim subnet.tf
+    6  vim sg.tf
+    7  ls
+    8  vim rout.tf
+    9  vim internetgw.tf
+   10  vim eks_cluster.tf
+   11  eks_node_group.tf
+   12  vim eks_node_group.tf
+   13  wget http://192.168.82.238
+   14  wget http://192.168.82.238:8000
+   15  cd ..
+   16  ls
+   17  mv projectctl.ppk project-test01/
+   18  cd project-test01/
+   19  ls
+   20  vim eks_node_group.tf
+   21  ls
+   22  vim iam_role.tf
+   23  terraform init
+   24  ls
+   25  aws configure
+   26  terraform fmt
+   27  terraform plan
+   28  terraform apply
+   29  sudo -i
+   30  ls
+   31  cd project-test01/
+   32  ls
+   33  sudo su
+   34  kubectl get pod
+   35  sudo -i
+   36  ls
+   37  cd project-test01/
+   38  ls
+   39  vim provider.tf
+   40  cat eks_cluster.tf
+   41  cat eks_node_group.tf
+   42  ls
+   43  cat iam_role.tf
+   44  ls
+   45  cat rout.tf
+   46  ls
+   47  cat subnet.tf
+   48  ls
+   49  cat vpc.tf
+   50  ls
+   51  cat internetgw.tf
+   52  ls
+   53  cat provider.tf
+   54  ls
+   55  cat sg.tf
+   56  history
